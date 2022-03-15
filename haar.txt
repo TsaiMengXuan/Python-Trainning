@@ -1,0 +1,33 @@
+pip install opencv-python
+pip install pillow
+
+1. python resize.py
+
+2. python resize_gray.py
+
+3. python changebmp.py
+
+4. https://github.com/sauhaardac/Haar-Training
+
+5. copy images to Haar-Training_carPlate\training\positive\rawdata
+                  Haar-Training_carPlate\training\negative
+
+6. objectmarker to label plate position -> info.txt
+
+7. python picMark.py
+
+8. python modMark.py
+
+9. python make4Pic.py
+
+10.Haar-Training_carPlate\training\samples_creation.bat
+createsamples.exe -info positive/info.txt -vec vector/facevector.vec -num 305 -w 76 -h 20
+
+11.Haar-Training_carPlate\training\haarTraining.bat
+haartraining.exe -data cascades -vec vector/facevector.vec -bg negative/bg.txt -npos 305 -nneg 290 -nstages 10 -mem 512 -mode ALL -w 76 -h 20
+
+12.Haar-Training_carPlate\cascade2xml\covert.bat
+haarconv.exe ../training/cascades ../../haar_carplate.xml 76 20
+
+13.python regCarPlate.py
+   python regCarPlate_all.py
